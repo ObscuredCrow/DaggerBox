@@ -1,0 +1,138 @@
+﻿<controls:MetroWindow x:Name="wdwMain" x:Class="test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:test"
+        mc:Ignorable="d"
+        Title="DaggerBox" Height="650.239" Width="762.373" Background="#FF252525" WindowStartupLocation="CenterScreen" Closing="wdwMain_Closing">
+    <Grid>
+        <Menu HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="754">
+            <MenuItem x:Name="mnuFile" Header="File" Foreground="White">
+                <MenuItem x:Name="mnuSave" Header="Save" Click="mnuSave_Click" ToolTip="Saves the configuration to DaggerBox's installed location, called broadcast_config.ini. (You can share this with other users.)" />
+                <MenuItem x:Name="mnuLoad" Header="Load" Click="mnuLoad_Click" ToolTip="Loads the broadcast_config.ini from DaggerBox's installed location. (You can replace the file with other configs.)" />
+                <MenuItem x:Name="mnuExit" Header="Exit" Foreground="White" Click="mnuExit_Click" ToolTip="Exits the program." />
+            </MenuItem>
+            <MenuItem x:Name="mnuLaunch" Header="Launch Game" Click="mnuLaunch_Click"/>
+        </Menu>
+        <TabControl HorizontalAlignment="Left" Height="588" VerticalAlignment="Top" Width="749" Margin="0,33,0,-2" TabStripPlacement="Left">
+            <TabItem x:Name="tabSetup" Header="Setup" FontSize="10" controls:ControlsHelper.HeaderFontSize="18" ToolTip="Select this tab for basic setup, activiation key and team layout.">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Background="#FF252525" Margin="0,0,3.2,-0.4" Height="1963">
+                        <Label Content="Broadcast Key:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="12" />
+                        <ComboBox x:Name="cboLockKey" HorizontalAlignment="Left" Margin="102,10,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectionChanged="cboLockKey_SelectionChanged" ToolTip="Key used for allowing broadcasting to happen between all sessions. When the lock is on it will allow broadcasting, when it's off it will block broadcasting." MouseLeftButtonDown="cboLockKey_MouseLeftButtonDown">
+                            <ComboBoxItem Cursor="None" Content="Scroll Lock" />
+                            <ComboBoxItem Content="Caps Lock" />
+                            <ComboBoxItem Content="Num Lock" />
+                        </ComboBox>
+                        <Label Content="Left Mouse Key:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="445,10,0,0" FontSize="12" />
+                        <ComboBox x:Name="cboMLLockKey" HorizontalAlignment="Left" Margin="544,10,0,0" VerticalAlignment="Top" Width="80" SelectedIndex="0" ToolTip="Key used to allow mouse left click broadcasting to all sessions." SelectionChanged="cboMLLockKey_SelectionChanged" MouseLeftButtonDown="cboMLLockKey_MouseLeftButtonDown">
+                            <ComboBoxItem Content="None" />
+                            <ComboBoxItem Cursor="None" Content="Shift" />
+                            <ComboBoxItem Content="Control" />
+                            <ComboBoxItem Content="Alt" />
+                        </ComboBox>
+                        <Label Content="Team Size and Layout" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" FontSize="18" />
+                        <Button x:Name="btnApplyLayout" Content="Apply" HorizontalAlignment="Left" Margin="549,96,0,0" VerticalAlignment="Top" Width="75" ToolTip="Applies the layout you have setup below." Click="btnApplyLayout_Click" />
+                        <Button x:Name="btnAddLayout" Content="Add" HorizontalAlignment="Left" Margin="389,96,0,0" VerticalAlignment="Top" Width="75" Click="btnAddLayout_Click" ToolTip="Adds a new character to your team." />
+                        <Button x:Name="btnRemoveLayout" Content="Remove" HorizontalAlignment="Left" Margin="469,96,0,0" VerticalAlignment="Top" Width="75" Click="btnRemoveLayout_Click" ToolTip="Removes the last added character on your team." />
+                        <Button x:Name="btnModifyLayout" Content="Modify" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="119" IsEnabled="False" Click="btnModifyLayout_Click" ToolTip="Changes the values of your selected, x position, y position, x resolution, and y resolution." />
+                        <TextBox x:Name="txtXPosition" HorizontalAlignment="Left" Height="26" Margin="134,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="False" HorizontalContentAlignment="Center" ToolTip="X position to be modified." />
+                        <TextBox x:Name="txtYPosition" HorizontalAlignment="Left" Height="23" Margin="258,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="False" HorizontalContentAlignment="Center" ToolTip="Y position to be modified." />
+                        <TextBox x:Name="txtXResolution" HorizontalAlignment="Left" Height="23" Margin="382,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="False" HorizontalContentAlignment="Center" ToolTip="X resolution to be modified." />
+                        <TextBox x:Name="txtYResolution" HorizontalAlignment="Left" Height="23" Margin="508,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="False" HorizontalContentAlignment="Center" ToolTip="Y resolution to be modified." />
+                        <TextBox x:Name="txtGameLayout" Height="23" Margin="103,41,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Type in the games process name, usually the name before .exe make sure you don't add .exe or it will not work." TextChanged="txtGameLayout_TextChanged" />
+                        <Label Content="Character" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,164,0,0" Width="119" HorizontalContentAlignment="Center" FontSize="12" />
+                        <Label Content="X Position" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="134,164,0,0" Width="119" HorizontalContentAlignment="Center" FontSize="12" />
+                        <Label Content="Y Position" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="258,164,0,0" Width="119" HorizontalContentAlignment="Center" FontSize="12" />
+                        <Label Content="X Resolution" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="382,164,0,0" Width="119" HorizontalContentAlignment="Center" FontSize="12" />
+                        <Label Content="Y Resolution" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="508,164,0,0" Width="119" HorizontalContentAlignment="Center" FontSize="12" />
+                        <Label Content="Game: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,41,0,0" FontSize="12" />
+                        <ListBox x:Name="lstLayoutCharacter" HorizontalAlignment="Left" Height="1725" Margin="10,188,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" FontSize="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <ListBox x:Name="lstLayoutXPosition" HorizontalAlignment="Left" Height="1725" Margin="134,188,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" FontSize="12" MouseDoubleClick="lstLayoutXPosition_MouseDoubleClick" ToolTip="Double click the x position you wish to modify." ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <ListBox x:Name="lstLayoutYPosition" HorizontalAlignment="Left" Height="1725" Margin="258,188,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" FontSize="12" MouseDoubleClick="lstLayoutYPosition_MouseDoubleClick" ToolTip="Double click the y position you wish to modify." ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <ListBox x:Name="lstLayoutXResolution" HorizontalAlignment="Left" Height="1725" Margin="384,188,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" FontSize="12" MouseDoubleClick="lstLayoutXResolution_MouseDoubleClick" ToolTip="Double click the x resolution you wish to modify." ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <ListBox x:Name="lstLayoutYResolution" HorizontalAlignment="Left" Height="1725" Margin="508,188,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" FontSize="12" MouseDoubleClick="lstLayoutYResolution_MouseDoubleClick" ToolTip="Double click the y resolution you wish to modify." ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Separator HorizontalAlignment="Left" Height="19" Margin="10,72,0,0" VerticalAlignment="Top" Width="614" />
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="tabBroadcast" Header="Broadcast" controls:ControlsHelper.HeaderFontSize="18" ToolTip="Select this tab for setting up broadcasting events.">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Background="#FF252525" Height="1958">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Basic: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" />
+                        <ComboBox x:Name="ddlBasicBroadcast" Margin="57,10,461,0" ToolTip="Basic broadcasting method, check all keys you would like to broadcast between all sessions." Grid.RowSpan="2" VerticalAlignment="Top" Width="119">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Margin="5" IsChecked="{Binding IsChecked}" />
+                                        <TextBlock Margin="5" Text="{Binding Text}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button x:Name="btnAddBroadcast" Content="Add" HorizontalAlignment="Left" Margin="470,65,0,0" VerticalAlignment="Top" Width="75" Click="btnAddBroadcast_Click" Grid.RowSpan="2" ToolTip="Add a custom hotkey entry that you can tailor." />
+                        <Button x:Name="btnRemoveBroadcast" Content="Remove" HorizontalAlignment="Left" Margin="550,65,0,0" VerticalAlignment="Top" Width="75" Click="btnRemoveBroadcast_Click" Grid.RowSpan="2" ToolTip="Remove the last custom hotkey entry you made." />
+                        <Label Content="Key Setup" HorizontalAlignment="Left" Margin="8,58,0,0" VerticalAlignment="Top" Width="119" FontSize="18" Grid.RowSpan="2" />
+                        <Label Content="Name" HorizontalAlignment="Left" Margin="8,97,0,0" VerticalAlignment="Top" Width="245" HorizontalContentAlignment="Center" Grid.RowSpan="2" />
+                        <Label Content="Hotkey" HorizontalAlignment="Left" Margin="258,97,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" Grid.RowSpan="2" />
+                        <Label Content="Broadcast Key" HorizontalAlignment="Left" Margin="382,97,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" Grid.RowSpan="2" />
+                        <Label Content="Target" HorizontalAlignment="Left" Margin="506,97,0,0" VerticalAlignment="Top" Width="119" HorizontalContentAlignment="Center" Grid.RowSpan="2" />
+                        <StackPanel x:Name="stkBroadcastName" HorizontalAlignment="Left" Height="1825" Margin="8,128,0,0" VerticalAlignment="Top" Width="245" Grid.RowSpan="2" ToolTip="Set your custom hotkey name, so you remember its function." />
+                        <StackPanel x:Name="stkBroadcastHotkey" HorizontalAlignment="Left" Height="1825" Margin="258,128,0,0" VerticalAlignment="Top" Width="119" Grid.RowSpan="2" ToolTip="Choose what hotkey you want to press to make something happen." />
+                        <StackPanel x:Name="stkBroadcastKey" HorizontalAlignment="Left" Height="1825" Margin="382,128,0,0" VerticalAlignment="Top" Width="119" Grid.RowSpan="2" ToolTip="Choose what key will be broadcast to the other sessions. (Can be different from hotkey.)" />
+                        <StackPanel x:Name="stkBroadcastTarget" HorizontalAlignment="Left" Height="1825" Margin="506,128,0,0" VerticalAlignment="Top" Width="119" Grid.RowSpan="2" ToolTip="Choose what sessions will receive your broadcast." />
+                        <Separator HorizontalAlignment="Left" Height="19" Margin="11,41,0,0" VerticalAlignment="Top" Width="614" Grid.RowSpan="2" />
+                        <Label Content="Movement:" HorizontalAlignment="Left" Margin="211,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" />
+                        <ComboBox x:Name="ddlMovementBroadcast" Margin="286,10,232,0" ToolTip="Basic movement key broadcasting, this will allow for holding a movement key down instead of just a single press." Grid.RowSpan="2" VerticalAlignment="Top" Width="119">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Margin="5" IsChecked="{Binding IsChecked}" />
+                                        <TextBlock Margin="5" Text="{Binding Text}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="tabMacros" Header="Macros" controls:ControlsHelper.HeaderFontSize="18">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Background="#FF252525" Margin="0,0,3.2,-0.4" Height="1963" />
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="tabExtras" Header="Extras" controls:ControlsHelper.HeaderFontSize="18">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Background="#FF252525" Margin="0,0,3.2,-0.4" Height="1963">
+                        <Label Content="Formations:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="119" FontSize="18" />
+                        <RadioButton x:Name="rdoColume" Content="Colume" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" IsChecked="True" Checked="rdoColume_Checked" />
+                        <RadioButton x:Name="rdoLine" Content="Line" HorizontalAlignment="Left" Margin="82,49,0,0" VerticalAlignment="Top" Checked="rdoLine_Checked" />
+                        <RadioButton x:Name="rdoWedge" Content="Wedge" HorizontalAlignment="Left" Margin="137,49,0,0" VerticalAlignment="Top" Checked="rdoWedge_Checked" />
+                        <RadioButton x:Name="rdoVee" Content="Vee" HorizontalAlignment="Left" Margin="207,49,0,0" VerticalAlignment="Top" Checked="rdoVee_Checked" />
+                        <RadioButton x:Name="rdoLFlank" Content="Left Flank" HorizontalAlignment="Left" Margin="260,49,0,0" VerticalAlignment="Top" Checked="rdoLFlank_Checked" />
+                        <RadioButton x:Name="rdoRFlank" Content="Right Flank" HorizontalAlignment="Left" Margin="344,49,0,0" VerticalAlignment="Top" Checked="rdoRFlank_Checked" />
+                        <RadioButton x:Name="rdoDiamond" Content="Diamond" HorizontalAlignment="Left" Margin="436,49,0,0" VerticalAlignment="Top" Checked="rdoDiamond_Checked" />
+                        <Separator HorizontalAlignment="Left" Height="19" Margin="10,72,0,0" VerticalAlignment="Top" Width="614" />
+                        <Label Content="Custom Left Mouse Key:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="218" FontSize="18" />
+                        <ComboBox x:Name="cboFormationKeys" HorizontalAlignment="Left" Margin="134,15,0,0" VerticalAlignment="Top" Width="120" ToolTip="Key you wish to use for sending out the formation command." />
+                        <Label Content="Target" HorizontalAlignment="Left" Margin="421,100,0,0" VerticalAlignment="Top" Width="51" />
+                        <ComboBox x:Name="cboCMKey" HorizontalAlignment="Left" Margin="228,100,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="1" SelectionChanged="cboCMKey_SelectionChanged" ToolTip="Modifier key used for triggering the left mouse key on the window you picked as a target.">
+                            <ComboBoxItem Content="None" />
+                            <ComboBoxItem Content="Shift" />
+                            <ComboBoxItem Content="Control" />
+                            <ComboBoxItem Content="Alt" />
+                        </ComboBox>
+                        <ComboBox x:Name="cboCMTargets" HorizontalAlignment="Left" Margin="472,100,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboCMTargets_SelectionChanged" ToolTip="The target you wish to have your left mouse click to be sent." />
+                        <Separator HorizontalAlignment="Center" Height="19" Margin="0,135,0,0" VerticalAlignment="Top" Width="614" />
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</controls:MetroWindow>

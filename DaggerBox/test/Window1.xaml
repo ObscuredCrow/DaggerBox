@@ -1,0 +1,16 @@
+﻿<Window x:Name="wdwWindow1" x:Class="test.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:test"
+        mc:Ignorable="d"
+        Title="Window1" WindowStyle="None" Focusable="False" IsHitTestVisible="False" IsTabStop="False" Topmost="True" AllowsTransparency="True" Width="1920" Height="1080">
+    <Window.Background>
+        <SolidColorBrush Color="#FFB0B0B0"
+                         Opacity="0" />
+    </Window.Background>
+    <Canvas x:Name="canMain" Margin="0,0,0,-0.4">
+        <Image x:Name="imgMouse" Height="20" Width="20" Source="images/10639-tee.png" RenderTransformOrigin="0.455,0.536" IsHitTestVisible="True" Canvas.Left="0" Canvas.Top="0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" />
+    </Canvas>
+</Window>
